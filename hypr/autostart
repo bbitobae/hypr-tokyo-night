@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+# variables
+config=$HOME/.config/hypr
+scripts=/home/steven/misc/tokyo-night/hypr/scripts
+wallpaper=$HOME/.wallpapers/gruvbox-wallpapers/wallpapers/irl
+
+# notification daemon
+#dunst &
+
+# wallpaper
+# $scripts/wall $wallpaper/forest-2.jpg &
+
+# live wallpaper
+# $scripts/live-wall &
+
+# waybar
+$scripts/launch_waybar &
+# $scripts/tools/dynamic &
+
+
+# effects
+# $scripts/rgb &
+
+# gammastep
+# gammastep -l 51.2:4.4 -t 5700:3000 -g 0.8 -m wayland
+
+# other
+# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+

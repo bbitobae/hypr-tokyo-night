@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+waybar -c $HYPRLAND_CONFIG/component/waybar/config -s $HYPRLAND_CONFIG/component/waybar/style.css &

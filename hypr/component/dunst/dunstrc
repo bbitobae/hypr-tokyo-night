@@ -371,6 +371,13 @@
     frame_color = "#db4b4b"
     icon = /usr/share/icons/Papirus-Dark/64x64/categories/system-error.svg
 
+[slack]
+    appname = "Slack"
+    background = "#292e42"
+    foreground = "#db4b4b"
+    frame_color = "#db4b4b"
+    icon = /usr/share/icons/Papirus-Dark/64x64/apps/slack.svg
+
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
 #

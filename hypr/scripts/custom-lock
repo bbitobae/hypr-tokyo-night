@@ -18,5 +18,5 @@ swaylockd \
 --line-color ebdbb2 \
 --inside-color 0011111b \
 --separator-color 00000000 \
---font "DejaVuSansMono" \
+--font "Ubuntu Nerd Font" \
 --fade-in 0.1 &

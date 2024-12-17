@@ -8,13 +8,13 @@
 }
 
 #text {
-	font-family: "FiraMono Nord Font";
+	font-family: "Ubuntu Nerd Font Med";
 	color: #c0caf5;
 }
 
 #text:selected {
 	color: #16161e;
-    padding: 6px 4px 2px 4px; 
+    padding: 4px 4px 2px 4px; 
     line-height: 
 }
 

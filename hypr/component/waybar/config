@@ -1,10 +1,10 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 30,
+    "height": 32,
     "margin": "-5, 10, 0, 10",
     "modules-left": ["hyprland/workspaces"],
-    "modules-right": ["tray", "cpu", "memory", "disk", "temperature", "backlight", "pulseaudio", "network", "battery", "clock"],
+    "modules-right": ["tray", "cpu", "memory", "temperature", "backlight", "pulseaudio", "network", "battery", "clock"],
 
     "hyprland/workspaces": {
         "format": "{id}"
@@ -29,15 +29,17 @@
     },
 
     "clock": {
-        "interval": 1,
+        "interval": 30,
         "locale": "C", 
-        "format": "{:%I:%M %p}",
-        "format-alt": " {:%a,%b %d}" // Icon: calendar-alt
+        "format": "󰅐 {:%I:%M}",
+        "format-alt": " {%b %d}",
+        "format-icons": ["󱑖", "󱑋", "󱑌", "󱑍", "󱑎", "󱑏", "󱑐", "󱑑", "󱑒", "󱑓", "󱑔", "󱑕"],
     },
 
     "cpu": {
         "interval": 10,
-        "format": " {usage}%",
+        // "format": "{usage}%",
+        "format": "{icon}",
         "format-icons": ["󰝦","󰪞","󰪟","󰪠","󰪡","󰪢","󰪣","󰪤","󰪥"],
         "max-length": 10,
         "on-click": "kitty -e 'gotop'"
@@ -45,7 +47,9 @@
 
     "memory": {
         "interval": 30,
-        "format": " {used:0.2f}GB",
+        // "format": "{used:0.2f}GB",
+        "format": "{icon}",
+        "format-icons": ["󰝦","󰪞","󰪟","󰪠","󰪡","󰪢","󰪣","󰪤","󰪥"],
         "max-length": 10,
         "tooltip": false,
         "warning": 70,
@@ -58,20 +62,23 @@
             "warning": 30,
             "critical": 15
         },
-        // "format": "{icon} {capacity}%",
-        // "format-charging": "⚡ {capacity}%",
-        // "format-plugged": " {capacity}%",
         "format": "{icon}",
-        "format-charging": "⚡",
-        "format-plugged": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-charging": "{icon}",
+        "format-plugged": "{icon}",
+        // "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        "format-icons": {
+            "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+            "plugged": ["󱰻"]
+        }
     },
 
     "temperature": {
         "critical-threshold": 80,
-	"thermal-zone": 1,
-	"format-critical": " {temperatureC}°" ,
-	"format": " {temperatureC}°"
+	"thermal-zone": 12,
+	"format-critical": "󰸁" ,
+    "format-icons": ["󱃃", "󰔏", "󱃂"],
+	"format": "{icon}" 
     },
 
     "network": {
@@ -80,38 +87,37 @@
         "format-alt-click": "click-right",
         "format-wifi": "{icon}",
         "format-icons": {
-            "wifi": ["", "" ,""],
-            "ethernet": [""],
-            "disconnected": [""]
+            //"wifi": ["", "" ,""],
+            "wifi": ["󰤯", "󰤟" ,"󰤢", "󰤥", "󰤨"],
+            "ethernet": ["󰈀"],
+            "disconnected": ["󰤭"]
         },
-        "on-click": "kitty nmtui",
+        "on-click": "kitty iwctl",
         "tooltip-format": "{ifname}: {ipaddr}",
     },
 
     "pulseaudio": {
       // "scroll-step": 1, // %, can be a float
-      "format": "{icon} {volume}% {format_source}",
-      "format-bluetooth": "{icon} {volume}% {format_source}",
-      "format-bluetooth-muted": " {format_source}",
-      "format-muted": " {format_source}",
-      "format-source": " {volume}%",
-      "format-source-muted": "",
+      "format": "{icon} {format_source}",
+      "format-bluetooth": "{icon} {format_source}",
+      "format-muted": "󰝟 {format_source}",
+      "format-headphone": "{icon} {format_source}",
+      "format-source": "󰍬",
+      "format-source-muted": "󰍭",
       "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""]
+        "headphone": "󰋋",
+        "bluetooth": "󰥰",
+        "muted": "󰝟",
+        "default": ["󰕿", "󰖀", "󰕾"]
       },
       "on-click": "pavucontrol"
     },
 
     "backlight": {
         "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", ""],
+        "format": "{icon}",
+        //"format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩑", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+        "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
         "on-scroll-down": "brightnessctl -c backlight set 1%-",
         "on-scroll-up": "brightnessctl -c backlight set +1%"
     },
@@ -129,7 +135,7 @@
     },
 
     "disk": {
-        "format": " {free}" 
+        "format": "{free}" 
     },
 
     "custom/recorder": {
@@ -191,7 +197,7 @@
         "on-click": "~/.config/hypr/scripts/tools/expand cycle"
     },
     "custom/wl-gammarelay-temperature": {
-      "format": "{} ",
+      "format": "{}",
       "exec": "wl-gammarelay --subscribe Temperature",
       "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
       "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"

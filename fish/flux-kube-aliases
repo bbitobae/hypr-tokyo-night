@@ -1,0 +1,65 @@
+# This command is used a LOT both below and in daily life
+alias f=flux
+
+# Get resources
+alias fghr='flux get helmreleases'
+alias fgks='flux get kustomizations'
+alias fgsa='flux get sources all'
+alias fgsb='flux get sources bucket'
+alias fgsc='flux get sources chart'
+alias fgsg='flux get sources git'
+alias fgsh='flux get sources helm'
+alias fgso='flux get sources oci'
+alias fghre='fghr | grep -v --color=never "False    	True\|True     	True"'
+alias fgkse='fgks | grep -v --color=never "False    	True\|True     	True"'
+alias fgsbe='fgsb | grep -v --color=never "False    	True\|True     	True"'
+alias fgsce='fgsc | grep -v --color=never "False    	True\|True     	True"'
+alias fgsge='fgsg | grep -v --color=never "False    	True\|True     	True"'
+alias fgshe='fgsh | grep -v --color=never "False    	True\|True     	True"'
+alias fgsoe='fgso | grep -v --color=never "False    	True\|True     	True"'
+
+# Describe resources
+alias fdhr='kubectl describe -n flux-system helmreleases'
+alias fdks='kubectl describe -n flux-system kustomizations'
+alias fdsb='kubectl describe -n flux-system buckets'
+alias fdsc='kubectl describe -n flux-system helmcharts'
+alias fdsg='kubectl describe -n flux-system gitrepositories'
+alias fdsh='kubectl describe -n flux-system helmrepositories'
+alias fdso='kubectl describe -n flux-system ocirepositories'
+
+# Suspend
+alias fshr='flux suspend helmrelease'
+alias fsks='flux suspend kustomization'
+alias fssb='flux suspend source bucket'
+alias fssc='flux suspend source chart'
+alias fssg='flux suspend source git'
+alias fssh='flux suspend source helm'
+alias fsso='flux suspend source oci'
+
+# Resume
+alias frhr='flux resume helmrelease'
+alias frks='flux resume kustomization'
+alias frsb='flux resume source bucket'
+alias frsc='flux resume source chart'
+alias frsg='flux resume source git'
+alias frsh='flux resume source helm'
+alias frso='flux resume source oci'
+
+# Reconcile
+fchr() {flux suspend helmrelease $1 && flux resume helmrelease $1}
+fcks() {flux suspend kustomization $1 && flux resume kustomization $1}
+fcsb() {flux suspend source bucket $1 && flux resume source bucket $1}
+fcsc() {flux suspend source chart $1 && flux resume source chart $1}
+fcsg() {flux suspend source git $1 && flux resume source git $1}
+fcsh() {flux suspend source helm $1 && flux resume source helm $1}
+fcso() {flux suspend source oci $1 && flux resume source oci $1}
+
+# Logs
+alias flf='flux logs -f'
+flhr() {flux logs -f | grep "HelmRelease/$1.flux-system"}
+flks() {flux logs -f | grep "Kustomization/$1.flux-system"}
+flsb() {flux logs -f | grep "Bucket/$1.flux-system"}
+flsc() {flux logs -f | grep "HelmChart/flux-system-$1.flux-system"}
+flsg() {flux logs -f | grep "GitRepository/$1.flux-system"}
+flsh() {flux logs -f | grep "HelmRepository/$1.flux-system"}
+flso() {flux logs -f | grep "OCIRepository/$1.flux-system"}
